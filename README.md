@@ -2,39 +2,43 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#020617" />
   <title>Flowmodoro Bank</title>
+
   <style>
     :root {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       background: #020617;
-      color: #f8fafc;
+      color: #ffffff;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 24px;
+      padding: 16px;
+      color: #ffffff;
       background: radial-gradient(circle at top left, #1e293b, #020617 70%);
     }
 
     .app {
-      width: min(1180px, 100%);
-      min-height: calc(100vh - 48px);
+      width: min(1320px, 100%);
+      min-height: calc(100vh - 32px);
       margin: 0 auto;
-      padding: 28px;
-      border-radius: 34px;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      box-shadow: 0 24px 90px rgba(0, 0, 0, 0.5);
+      padding: 22px;
+      border-radius: 30px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(226, 232, 240, 0.22);
+      box-shadow: 0 24px 90px rgba(0, 0, 0, 0.55);
       display: grid;
       grid-template-rows: auto 1fr;
-      gap: 24px;
+      gap: 18px;
     }
 
     header {
@@ -46,93 +50,114 @@
 
     h1 {
       margin: 0;
-      font-size: 38px;
+      font-size: 34px;
+      line-height: 1;
       letter-spacing: -0.05em;
+      color: #ffffff;
     }
 
     .subtitle {
-      margin: 6px 0 0;
-      color: #94a3b8;
-      line-height: 1.4;
+      margin: 10px 0 0;
+      color: #e2e8f0;
+      line-height: 1.35;
+      font-size: 17px;
     }
 
     .tabs {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       padding: 6px;
       border-radius: 999px;
-      background: rgba(2, 6, 23, 0.55);
-      border: 1px solid rgba(148, 163, 184, 0.16);
+      background: rgba(2, 6, 23, 0.72);
+      border: 1px solid rgba(226, 232, 240, 0.18);
+      flex-shrink: 0;
     }
 
     .tab {
       border: 0;
       border-radius: 999px;
-      padding: 12px 18px;
-      color: #cbd5e1;
+      padding: 13px 24px;
+      color: #ffffff;
       background: transparent;
-      font-weight: 750;
+      font-size: 17px;
+      font-weight: 800;
       cursor: pointer;
     }
 
     .tab.active {
-      background: #f8fafc;
+      background: #ffffff;
       color: #020617;
     }
 
-    .page { display: none; }
-    .page.active { display: block; }
+    .page {
+      display: none;
+      height: 100%;
+    }
+
+    .page.active {
+      display: block;
+    }
 
     .dashboard {
       height: 100%;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 18px;
     }
 
     .panel {
-      border-radius: 30px;
-      background: rgba(30, 41, 59, 0.58);
-      border: 1px solid rgba(148, 163, 184, 0.15);
-      padding: 24px;
+      border-radius: 28px;
+      background: rgba(30, 41, 59, 0.72);
+      border: 1px solid rgba(226, 232, 240, 0.18);
+      padding: 22px;
     }
 
     .main-panel {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 560px;
+      min-height: 430px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
     }
 
     .status {
       display: inline-flex;
       gap: 8px;
       align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.12);
-      color: #cbd5e1;
-      font-size: 14px;
       width: fit-content;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(226, 232, 240, 0.16);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
     }
 
     .dot {
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: #64748b;
+      background: #cbd5e1;
     }
 
-    .dot.work { background: #22c55e; }
-    .dot.break { background: #38bdf8; }
+    .dot.work {
+      background: #22c55e;
+    }
+
+    .dot.break {
+      background: #38bdf8;
+    }
 
     .timer {
+      align-self: center;
       text-align: center;
-      font-size: clamp(96px, 14vw, 176px);
-      font-weight: 850;
-      letter-spacing: -0.08em;
+      font-size: clamp(108px, 18vw, 210px);
+      font-weight: 900;
+      letter-spacing: -0.09em;
       font-variant-numeric: tabular-nums;
-      margin: 20px 0;
+      color: #ffffff;
+      line-height: 0.95;
+      margin: 0;
+      text-shadow: 0 8px 40px rgba(255, 255, 255, 0.08);
     }
 
     .controls {
@@ -141,118 +166,162 @@
       gap: 12px;
     }
 
-    button, input, select { font: inherit; }
+    button,
+    input,
+    select {
+      font: inherit;
+    }
 
     button {
       border: 0;
-      border-radius: 20px;
-      padding: 18px 14px;
-      color: white;
-      font-weight: 800;
+      border-radius: 18px;
+      padding: 16px 14px;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 850;
       background: #334155;
       cursor: pointer;
     }
 
-    button:active { transform: scale(0.98); }
-    button:disabled { opacity: 0.38; cursor: not-allowed; }
+    button:active {
+      transform: scale(0.98);
+    }
 
-    .primary { background: #16a34a; }
-    .danger { background: #dc2626; }
-    .blue { background: #0284c7; }
-    .muted { background: #475569; }
-    .wide { grid-column: 1 / -1; }
+    button:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    .primary {
+      background: #16a34a;
+    }
+
+    .danger {
+      background: #dc2626;
+    }
+
+    .blue {
+      background: #0284c7;
+    }
+
+    .muted {
+      background: #475569;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .side-panel {
+      display: grid;
+      grid-template-rows: auto auto auto 1fr;
+      gap: 14px;
+      min-height: 430px;
+    }
 
     .cards {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-bottom: 18px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
 
     .card {
-      padding: 20px;
-      border-radius: 24px;
-      background: rgba(15, 23, 42, 0.62);
-      border: 1px solid rgba(148, 163, 184, 0.14);
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(226, 232, 240, 0.16);
+      min-height: 118px;
     }
 
     .label {
-      color: #94a3b8;
+      color: #ffffff;
       font-size: 14px;
+      font-weight: 750;
       margin-bottom: 8px;
     }
 
     .value {
-      font-size: 38px;
-      font-weight: 800;
+      font-size: 34px;
+      font-weight: 900;
       letter-spacing: -0.05em;
+      color: #ffffff;
+      line-height: 1;
     }
 
     .settings {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
     label {
       display: block;
       margin-bottom: 8px;
-      color: #94a3b8;
+      color: #ffffff;
       font-size: 14px;
+      font-weight: 750;
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(15, 23, 42, 0.9);
-      color: white;
+      border: 1px solid rgba(226, 232, 240, 0.26);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(2, 6, 23, 0.76);
+      color: #ffffff;
       outline: none;
+      font-size: 16px;
+    }
+
+    input::placeholder {
+      color: #e2e8f0;
+      opacity: 0.75;
     }
 
     .hint {
-      margin-top: 18px;
-      color: #94a3b8;
+      margin: 0;
+      color: #e2e8f0;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .mini-history {
-      margin-top: 20px;
-      max-height: 150px;
       overflow: auto;
       font-size: 13px;
-      color: #cbd5e1;
+      color: #ffffff;
+      min-height: 80px;
+      max-height: 130px;
     }
 
     .mini-history div {
       padding: 8px 0;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.14);
     }
 
     .history-page {
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
-      gap: 24px;
       height: 100%;
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 18px;
     }
 
     .summary-number {
       font-size: 68px;
-      font-weight: 850;
+      font-weight: 900;
       letter-spacing: -0.07em;
-      margin: 14px 0 4px;
+      margin: 10px 0 8px;
+      color: #ffffff;
+      line-height: 1;
     }
 
     .week-chart {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 12px;
-      height: 430px;
+      height: 360px;
       align-items: end;
-      padding-top: 30px;
+      padding-top: 20px;
     }
 
     .bar-wrap {
@@ -260,7 +329,7 @@
       display: flex;
       flex-direction: column;
       justify-content: end;
-      gap: 10px;
+      gap: 9px;
       text-align: center;
     }
 
@@ -268,26 +337,27 @@
       min-height: 8px;
       border-radius: 18px 18px 8px 8px;
       background: linear-gradient(180deg, #38bdf8, #0284c7);
-      border: 1px solid rgba(255,255,255,0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
     }
 
     .bar-label {
-      color: #cbd5e1;
-      font-weight: 750;
+      color: #ffffff;
+      font-weight: 850;
       font-size: 14px;
     }
 
     .bar-time {
-      color: #94a3b8;
+      color: #ffffff;
       font-size: 13px;
+      font-weight: 750;
       font-variant-numeric: tabular-nums;
     }
 
     .sessions-list {
-      margin-top: 20px;
-      max-height: 250px;
+      margin-top: 18px;
+      max-height: 240px;
       overflow: auto;
-      color: #cbd5e1;
+      color: #ffffff;
       font-size: 14px;
     }
 
@@ -296,7 +366,11 @@
       justify-content: space-between;
       gap: 14px;
       padding: 10px 0;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.14);
+    }
+
+    .sessions-list strong {
+      color: #ffffff;
     }
 
     @media (orientation: portrait) {
@@ -310,14 +384,15 @@
         justify-content: center;
         padding: 32px;
         text-align: center;
-        background: rgba(2, 6, 23, 0.94);
-        color: #f8fafc;
+        background: rgba(2, 6, 23, 0.96);
+        color: #ffffff;
         font-size: 24px;
-        font-weight: 800;
+        font-weight: 850;
       }
     }
   </style>
 </head>
+
 <body>
   <main class="app">
     <header>
@@ -325,6 +400,7 @@
         <h1>Flowmodoro</h1>
         <p class="subtitle">Travaille librement, gagne de la pause, garde le surplus en banque.</p>
       </div>
+
       <nav class="tabs">
         <button id="tabDashboard" class="tab active">Aujourd’hui</button>
         <button id="tabHistory" class="tab">Historique</button>
@@ -349,16 +425,18 @@
           </div>
         </section>
 
-        <aside class="panel">
+        <aside class="panel side-panel">
           <section class="cards">
             <div class="card">
               <div class="label">Pause disponible</div>
               <div id="bankValue" class="value">0 min</div>
             </div>
+
             <div class="card">
               <div class="label">Ratio</div>
               <div id="ratioValue" class="value">5:1</div>
             </div>
+
             <div class="card">
               <div class="label">Focus aujourd’hui</div>
               <div id="todayFocusValue" class="value">0 min</div>
@@ -376,6 +454,7 @@
                 <option value="5">5:1</option>
               </select>
             </div>
+
             <div>
               <label for="breakMinutes">Pause à prendre</label>
               <input id="breakMinutes" type="number" min="1" step="1" placeholder="minutes" />
@@ -387,6 +466,7 @@
           </section>
 
           <p class="hint">Avec un ratio 5:1, 50 minutes de travail donnent 10 minutes de pause. Tu peux en prendre une partie seulement.</p>
+
           <div id="history" class="mini-history"></div>
         </aside>
       </div>
@@ -410,7 +490,7 @@
   </main>
 
   <script>
-    const STORAGE_KEY = "flowmodoro-state-v2";
+    const STORAGE_KEY = "flowmodoro-state-v3";
 
     const defaultState = {
       mode: "idle",
@@ -459,7 +539,9 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    function now() { return Date.now(); }
+    function now() {
+      return Date.now();
+    }
 
     function secondsBetween(startMs, endMs = now()) {
       return Math.max(0, Math.floor((endMs - startMs) / 1000));
@@ -497,11 +579,18 @@
     }
 
     function longDateLabel(ms) {
-      return new Date(ms).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "short" });
+      return new Date(ms).toLocaleDateString("fr-FR", {
+        weekday: "long",
+        day: "numeric",
+        month: "short"
+      });
     }
 
     function addHistory(text) {
-      const time = new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+      const time = new Date().toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
       state.history.unshift(`${time} — ${text}`);
       state.history = state.history.slice(0, 8);
     }
@@ -589,6 +678,7 @@
         el.ratio.value = state.ratio;
         return;
       }
+
       state.ratio = Number(el.ratio.value);
       addHistory(`Ratio réglé sur ${state.ratio}:1`);
       saveState();
@@ -597,6 +687,7 @@
 
     function resetBank() {
       if (!confirm("Réinitialiser toute la banque de pause ?")) return;
+
       state.breakBankSeconds = 0;
       state.mode = "idle";
       state.workStart = null;
@@ -611,11 +702,13 @@
       const days = [];
       const today = new Date();
       today.setHours(0, 0, 0, 0);
+
       for (let i = 6; i >= 0; i--) {
         const d = new Date(today);
         d.setDate(today.getDate() - i);
         days.push({ ms: d.getTime(), key: dateKey(d.getTime()) });
       }
+
       return days;
     }
 
@@ -632,6 +725,7 @@
       const total = data.reduce((sum, day) => sum + day.seconds, 0);
 
       el.weekTotal.textContent = formatHoursMinutes(total);
+
       el.weekChart.innerHTML = data.map(day => {
         const height = Math.max(2, Math.round((day.seconds / maxSeconds) * 100));
         return `
@@ -656,6 +750,7 @@
 
     function render() {
       const showHistory = state.activePage === "history";
+
       el.tabDashboard.classList.toggle("active", !showHistory);
       el.tabHistory.classList.toggle("active", showHistory);
       el.dashboardPage.classList.toggle("active", !showHistory);
